@@ -52,4 +52,14 @@ describe(Contact) do
       expect(Contact.list()).to(eq([]))
     end
   end
+
+  describe('.find') do
+    it('finds a contact based on the unique id number') do
+      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_person.add()
+      test_person2 = Contact.new({:name => "Robin", :number => "5039923463"})
+      test_person2.add()
+      expect(Contact.find(test_person.id())).to(eq(test_person))
+    end
+  end
 end
