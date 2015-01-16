@@ -1,12 +1,11 @@
 class Contact  #Dealership
 
-  attr_reader(:name, :number)
+  attr_reader(:name)
 
   @@contacts = []
 
   define_method(:initialize) do |attributes|
     @name = attributes.fetch(:name)
-    @number = attributes.fetch(:number)
     @id = @@contacts.length().+(1)
     @numbers = []
   end
@@ -29,7 +28,7 @@ class Contact  #Dealership
 
   define_method(:add_home) do |home|
     @numbers.push(home)
-# binding.pry
+
   end
 
   define_method(:add_work) do |work|

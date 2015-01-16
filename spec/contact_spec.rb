@@ -16,13 +16,6 @@ describe(Contact) do
     end
   end
 
-  describe('#number') do
-    it('returns the number of the contact') do
-      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
-      expect(test_person.number()).to(eq("9716451564"))
-    end
-  end
-
   describe('#add') do
     it('adds the contact to the list of contacts') do
       test_person = Contact.new({:name => "Peter", :number => "9716451564"})

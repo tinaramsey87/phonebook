@@ -1,4 +1,26 @@
-<h1>Contact details:</h1>
+<h3>Numbers:</h3>
 
-<p>Name: <%= @contact.name() %></p>
-<p>Number: <%= @contact.number() %></p>
+<form action="/contacts" method="post">
+  <input id='id' name='id' type='hidden' value='<%= @contact.id() %>'>
+
+<label for="hnumber">Contact's home number:</label>
+<input id="hnumber" name="hnumber" type="text">
+
+<label for="cnumber">Contact's cell number:</label>
+<input id="cnumber" name="cnumber" type="text">
+
+<label for="wnumber">Contact's work number:</label>
+<input id="wnumber" name="wnumber" tpye="text">
+
+<button type="submit">Add numbers</button>
+</form>
+
+<ul>
+  <% @contact.numbers().each() do |number| %>
+  <li>Home: <%= number.home() %> </li>
+  <li>Cell: <%= number.cell() %> </li>
+  <li>Work: <%= number.work() %> </li>
+  <% end %>
+</ul>
+
+<a href="/">Return to Phonebook</a>
