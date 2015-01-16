@@ -1,6 +1,7 @@
 require('rspec')
 require('pry')
 require('contact')
+require('phone')
 
 describe(Contact) do
 
@@ -62,4 +63,39 @@ describe(Contact) do
       expect(Contact.find(test_person.id())).to(eq(test_person))
     end
   end
+
+  describe('#numbers') do
+    it('is an array of phone numbers for a contact; it is empty at first') do
+      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      expect(test_person.numbers()).to(eq([]))
+    end
+  end
+
+  describe('#add_home') do
+    it('adds a home number to the phone numbers for a contact') do
+      test_home = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
+      test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_contact.add_home(test_home.home())
+      expect(test_contact.numbers()).to(eq(["5033331234"]))
+    end
+  end
+
+  describe('#add_work') do
+    it('adds a work number to the phone numbers for a contact') do
+      test_work = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
+      test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_contact.add_work(test_work.work())
+      expect(test_contact.numbers()).to(eq(["1234567890"]))
+    end
+  end
+
+  describe('#add_cell') do
+    it('adds a cell number to the phone numbers for a contact') do
+      test_cell = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
+      test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_contact.add_cell(test_cell.cell())
+      expect(test_contact.numbers()).to(eq(["7763614270"]))
+    end
+  end
+
 end

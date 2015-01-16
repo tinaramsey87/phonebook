@@ -1,4 +1,4 @@
-class Contact
+class Contact  #Dealership
 
   attr_reader(:name, :number)
 
@@ -8,10 +8,15 @@ class Contact
     @name = attributes.fetch(:name)
     @number = attributes.fetch(:number)
     @id = @@contacts.length().+(1)
+    @numbers = []
   end
 
   define_method(:id) do
     @id
+  end
+
+  define_method(:numbers) do
+    @numbers
   end
 
   define_singleton_method(:list) do
@@ -20,6 +25,19 @@ class Contact
 
   define_method(:add) do
     @@contacts.push(self)
+  end
+
+  define_method(:add_home) do |home|
+    @numbers.push(home)
+# binding.pry
+  end
+
+  define_method(:add_work) do |work|
+    @numbers.push(work)
+  end
+
+  define_method(:add_cell) do |cell|
+    @numbers.push(cell)
   end
 
   define_singleton_method(:clear) do
@@ -35,4 +53,5 @@ class Contact
     end
     found_contact
   end
+
 end

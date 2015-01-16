@@ -1,0 +1,22 @@
+<h1>Phonebook</h1>
+
+<h3>Add a new contact:</h3>
+
+<form action="/addcontact" method="post">
+  <label for="name">Contact's name:</label>
+  <input id="name" name="name" type="text">
+
+  <label for="number">Contact's number:</label>
+  <input id="number" name="number" type="text">
+
+  <button type="submit">Add Contact</button>
+</form>
+
+
+<h3>Current contacts in the phonebook: </h3>
+<p>Click on a contact to view or edit their details</p>
+<ul>
+  <% @contacts.each() do |contact| %>
+  <li><a href="/contacts/<%= contact.id() %>"><%= contact.name() %></a></li>
+  <% end %>
+</ul>
