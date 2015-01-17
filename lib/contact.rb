@@ -1,5 +1,5 @@
-class Contact  #Dealership
-
+class Contact
+  
   attr_reader(:name)
 
   @@contacts = []
@@ -26,17 +26,9 @@ class Contact  #Dealership
     @@contacts.push(self)
   end
 
-  define_method(:add_home) do |home|
-    @numbers.push(home)
+  define_method(:add_number) do |number|
+    @numbers.push(number)
 
-  end
-
-  define_method(:add_work) do |work|
-    @numbers.push(work)
-  end
-
-  define_method(:add_cell) do |cell|
-    @numbers.push(cell)
   end
 
   define_singleton_method(:clear) do

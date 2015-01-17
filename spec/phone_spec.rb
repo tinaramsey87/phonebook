@@ -9,32 +9,26 @@ describe(Phone) do
     Phone.clear()
   end
 
-  describe('#home') do
+  describe('#new_number') do
     it('returns home number') do
-      test_home = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      expect(test_home.home()).to(eq("5033331234"))
+      test_home = Phone.new({:new_number => "5033331234"})
+      expect(test_home.new_number()).to(eq("5033331234"))
     end
   end
 
-  describe('#work') do
-    it('returns work number') do
-      test_work = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      expect(test_work.work()).to(eq("1234567890"))
-    end
-  end
-
-  describe('#cell') do
-    it('returns cell number') do
-      test_cell = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      expect(test_cell.cell()).to(eq("7763614270"))
+  describe('#phone_id') do
+    it('assigns an id number to each phone number') do
+      test_home = Phone.new({:new_number => "5033331234"})
+      test_home.add()
+      expect(test_home.phone_id()).to(eq(1))
     end
   end
 
   describe('#add') do
     it('adds a new phone number to the list of numbers for a contact') do
-      test_cell = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      test_cell.add()
-      expect(Phone.list()).to(eq([test_cell]))
+      test_home = Phone.new({:new_number => "5033331234"})
+      test_home.add()
+      expect(Phone.list()).to(eq([test_home]))
     end
   end
 
@@ -46,10 +40,20 @@ describe(Phone) do
 
   describe('.clear') do  ##change words
     it('clears the list of phone numbers') do
-      test_cell = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      test_cell.add()
+      test_home = Phone.new({:new_number => "5033331234"})
+      test_home.add()
       Phone.clear()
       expect(Phone.list()).to(eq([]))
+    end
+  end
+
+  describe('.find') do
+    it('finds a phone number based on the unique id number') do
+      test_home = Phone.new({:new_number => "5033331234"})
+      test_home.add()
+      test_work = Phone.new({:new_number => "5033334321"})
+      test_work.add()
+      expect(Phone.find(test_home.phone_id())).to(eq(test_home))
     end
   end
 

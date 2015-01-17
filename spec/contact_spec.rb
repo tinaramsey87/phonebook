@@ -11,14 +11,14 @@ describe(Contact) do
 
   describe('#name') do
     it('returns the name of the contact') do
-      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_person = Contact.new({:name => "Peter"})
       expect(test_person.name()).to(eq("Peter"))
     end
   end
 
   describe('#add') do
     it('adds the contact to the list of contacts') do
-      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_person = Contact.new({:name => "Peter"})
       test_person.add()
       expect(Contact.list()).to(eq([test_person]))
     end
@@ -26,7 +26,7 @@ describe(Contact) do
 
   describe('#id') do
     it('returns a contact by id number') do
-      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_person = Contact.new({:name => "Peter"})
       test_person.add()
       expect(test_person.id()).to(eq(1))
     end
@@ -40,7 +40,7 @@ describe(Contact) do
 
   describe('.clear') do
     it('clears the list of saved contacts') do
-      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_person = Contact.new({:name => "Peter"})
       test_person.add()
       Contact.clear()
       expect(Contact.list()).to(eq([]))
@@ -49,9 +49,9 @@ describe(Contact) do
 
   describe('.find') do
     it('finds a contact based on the unique id number') do
-      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_person = Contact.new({:name => "Peter"})
       test_person.add()
-      test_person2 = Contact.new({:name => "Robin", :number => "5039923463"})
+      test_person2 = Contact.new({:name => "Robin"})
       test_person2.add()
       expect(Contact.find(test_person.id())).to(eq(test_person))
     end
@@ -59,36 +59,36 @@ describe(Contact) do
 
   describe('#numbers') do
     it('is an array of phone numbers for a contact; it is empty at first') do
-      test_person = Contact.new({:name => "Peter", :number => "9716451564"})
+      test_person = Contact.new({:name => "Peter"})
       expect(test_person.numbers()).to(eq([]))
     end
   end
 
-  describe('#add_home') do
-    it('adds a home number to the phone numbers for a contact') do
-      test_home = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
-      test_contact.add_home(test_home.home())
+  describe('#add_number') do
+    it('adds an additional number to the phone numbers for a contact') do
+      test_home = Phone.new({:new_number => "5033331234"})
+      test_contact = Contact.new({:name => "Peter"})
+      test_contact.add_number(test_home.new_number())
       expect(test_contact.numbers()).to(eq(["5033331234"]))
     end
   end
 
-  describe('#add_work') do
-    it('adds a work number to the phone numbers for a contact') do
-      test_work = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
-      test_contact.add_work(test_work.work())
-      expect(test_contact.numbers()).to(eq(["1234567890"]))
-    end
-  end
-
-  describe('#add_cell') do
-    it('adds a cell number to the phone numbers for a contact') do
-      test_cell = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
-      test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
-      test_contact.add_cell(test_cell.cell())
-      expect(test_contact.numbers()).to(eq(["7763614270"]))
-    end
-  end
+  # describe('#add_work') do
+  #   it('adds a work number to the phone numbers for a contact') do
+  #     test_work = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
+  #     test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
+  #     test_contact.add_work(test_work.work())
+  #     expect(test_contact.numbers()).to(eq(["1234567890"]))
+  #   end
+  # end
+  #
+  # describe('#add_cell') do
+  #   it('adds a cell number to the phone numbers for a contact') do
+  #     test_cell = Phone.new({:home => "5033331234", :work => "1234567890", :cell => "7763614270"})
+  #     test_contact = Contact.new({:name => "Peter", :number => "9716451564"})
+  #     test_contact.add_cell(test_cell.cell())
+  #     expect(test_contact.numbers()).to(eq(["7763614270"]))
+  #   end
+  # end
 
 end

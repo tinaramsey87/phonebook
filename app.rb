@@ -22,20 +22,17 @@ post('/addcontact') do
 
 end
 
-post('/contacts') do
+post('/addnumbers') do
 
-  hnumber = params.fetch('hnumber')
-  cnumber = params.fetch('cnumber')
-  wnumber = params.fetch('wnumber')
-  @numbers = Phone.new({:home => hnumber, :work => wnumber, :cell => cnumber})
-  @contact = Contact.find(params.fetch("id").to_i())
-  @contact.add_home(hnumber)
-  @contact.add_cell(cnumber)
-  @contact.add_work(wnumber)
-  @numbers = Phone.list()
-  erb(:contacts)
-
+    newnumber = params.fetch('newnumber')
+    @number = Phone.new(:new_number => newnumber)
+    @number.add()
+    @contact = Contact.find(params.fetch('id').to_i())
+    @contact.add_number(@number)
+    @numbers = Phone.list()
+    erb(:contacts)
 end
+
 
 get('/contacts/:id') do
 
