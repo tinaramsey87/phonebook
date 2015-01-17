@@ -66,7 +66,7 @@ describe(Contact) do
 
   describe('#add_number') do
     it('adds an additional number to the phone numbers for a contact') do
-      test_home = Phone.new({:new_number => "5033331234"})
+      test_home = Phone.new({:new_number => "5033331234", :type => "cell"})
       test_contact = Contact.new({:name => "Peter"})
       test_contact.add_number(test_home.new_number())
       expect(test_contact.numbers()).to(eq(["5033331234"]))

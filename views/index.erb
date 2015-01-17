@@ -2,18 +2,23 @@
 
 <h3>Add a new contact:</h3>
 
+<div class="form-group">
 <form action="/addcontact" method="post">
   <label for="name">Contact's name:</label>
-  <input id="name" name="name" type="text">
+  <input id="name" name="name" type="text" autofocus>
 
-  <button type="submit">Add Contact</button>
+  <button type="submit" class="btn">Add Contact</button>
 </form>
+</div>
 
 
 <h3>Current contacts in the phonebook: </h3>
 <p>Click on a contact to view or edit their details</p>
+
+<div class="list">
 <ul>
   <% @contacts.each() do |contact| %>
   <li><a href="/contacts/<%= contact.id() %>"><%= contact.name() %></a></li>
   <% end %>
 </ul>
+</div>

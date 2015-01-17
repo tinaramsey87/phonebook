@@ -1,11 +1,12 @@
 class Phone
 
-  attr_reader(:new_number)
+  attr_reader(:new_number, :type)
 
   @@numbers = []
 
   define_method(:initialize) do |attributes|
     @new_number = attributes.fetch(:new_number)
+    @type = attributes.fetch(:type)
     @phone_id = @@numbers.length().+(1)
 
   end

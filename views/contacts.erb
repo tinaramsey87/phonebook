@@ -1,4 +1,3 @@
-<div class="">
 <h3>Numbers:</h3>
 
 <form action="/addnumbers" method="post">
@@ -7,15 +6,17 @@
 <label for="newnumber">Add a number to contact:</label>
 <input id="newnumber" name="newnumber" type="text">
 
-<button type="submit">Add number</button>
+<label for="numbertype">Add a tag for this number (home, cell, etc):</label>
+<input id="numbertype" name="numbertype" type="text">
+
+<button type="submit" class="btn">Add number</button>
 </form>
 
-<ul>
-  <% @contact.numbers().each() do |number| %>
-  <li><%= number.new_number() %></li>
+<div class="list">
+<ul><% @contact.numbers().each() do |number| %>
+  <li><%= number.type() %>: <%= number.new_number() %></li>
   <% end %>
 </ul>
+</div>
 
 <a href="/">Return to Phonebook</a>
-
-</div>
